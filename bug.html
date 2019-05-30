@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
   <p>bug已经解决完毕</p>
+  <script>
+    add(2, 5); // 7
+    add(2)(5); // 7
+    function addto() {
+      var length = arguments.length;
+      var sum = 0;
+      for (var i = 0; i < length; i++) {
+        sum += arguments[i]
+      }
+      return sum;
+    }
+
+    function add() {
+      var value = addto.apply(add, arguments);
+      var helper = function (next) {
+        typeof next == "number" ? value += next : value;
+        return helper
+      }
+      helper.valueOf = function () {
+        return value;
+      }
+      return helper;
+    }
+  </script>
 </body>
+
 </html>
